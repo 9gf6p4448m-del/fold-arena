@@ -8,17 +8,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#16181d">
     <link rel="manifest" href="manifest.json">
-    <script>
-      // 首頁＝狙擊預警研究版：網址沒帶 research 時預設 B1（?variant=a 切 A 控制組）；正式版 v0.5.0 移至 /formal050/
-      (function () {
-        var p = new URLSearchParams(location.search);
-        if (p.has("research")) return;
-        p.set("research", "sniper");
-        if (!p.has("variant")) p.set("variant", "b1");
-        history.replaceState(null, "", location.pathname + "?" + p.toString() + location.hash);
-      })();
-    </script>
-    <title>FOLD ARENA v0.6.0</title>
+    <title>FOLD ARENA v0.5.0</title>
     <style>
       html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #16181d;
                    touch-action: none; overscroll-behavior: none; -webkit-user-select: none; user-select: none;
@@ -57,7 +47,7 @@
     <div id="fa-rotate">請把手機橫放<br>（建議先關閉螢幕方向鎖定）</div>
 
     <!-- 版本列：判斷「看到的是不是剛部署的那一版」只看這一行。版本號來自 Assets/Scripts/Core/FoldArenaVersion.cs，建置時間與 commit 由建置器寫入。 -->
-    <div id="fa-version">FOLD ARENA v0.6.0<br>RESEARCH sniperwarn build 2026-10-16 05:45 UTC（研究建置，非產品）</div>
+    <div id="fa-version">FOLD ARENA v0.5.0<br>build 2026-10-12 17:57 UTC · 446c351</div>
 
     <div id="fa-bench"><div id="fa-bench-text"></div><div id="fa-bench-buttons" style="display:none"><button id="fa-bench-copy">複製 JSON</button><button id="fa-bench-dl">下載 JSON</button><button id="fa-bench-close">關閉</button></div></div>
 
@@ -222,7 +212,7 @@
     </script>
 
     <!-- 建置檔網址帶 commit 快取鍵：Unity 檔名固定，否則瀏覽器可能用新 index.html 配舊 wasm（量到舊版卻顯示新戳記） -->
-    <script src="Build/WebGL-research-sniperwarn.loader.js?v=research-sniperwarn-202610160545"></script>
+    <script src="Build/WebGL.loader.js?v=446c351-202610121757"></script>
     <script>
       var canvas = document.querySelector("#unity-canvas");
       var loading = document.querySelector("#fa-loading");
@@ -236,13 +226,13 @@
       }
 
       createUnityInstance(canvas, {
-        dataUrl: "Build/WebGL-research-sniperwarn.data.unityweb?v=research-sniperwarn-202610160545",
-        frameworkUrl: "Build/WebGL-research-sniperwarn.framework.js.unityweb?v=research-sniperwarn-202610160545",
-        codeUrl: "Build/WebGL-research-sniperwarn.wasm.unityweb?v=research-sniperwarn-202610160545",
+        dataUrl: "Build/WebGL.data.unityweb?v=446c351-202610121757",
+        frameworkUrl: "Build/WebGL.framework.js.unityweb?v=446c351-202610121757",
+        codeUrl: "Build/WebGL.wasm.unityweb?v=446c351-202610121757",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "FoldArena",
         productName: "FOLD ARENA",
-        productVersion: "0.6.0",
+        productVersion: "0.5.0",
         // 手機 devicePixelRatio 常為 3：全解析度渲染對 WebGL 太重，上限壓在 2
         devicePixelRatio: Math.min(window.devicePixelRatio || 1, 2),
         showBanner: function (message, type) { if (type === "error") showError(message); else console.warn(message); }
